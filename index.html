@@ -3,12 +3,19 @@
 	    <title>Hello Page</title>
 	</head>
 	<body>
-	    HELLO!!!
+	
+	    <div>
+		    <form action="/handle" method="post">
+		       <input type="text" name="UserName" />
+		       <input type="text" name="Repository" />
+		       <input type="text" name="Branch" />
+		       <input type="submit" value="Submit" />
+            </form>
+		</div>
+		<div>
+		    <a href="/basement">Link 1</a>
+		    <a href="/floor/1/bedroom">Link 2</a>
+		</div>
 		
-		
-		<form action="/handle" method="post">
-		   <input type="text" name="UserName" />
-		   <input type="submit" value="Submit" />
-		</form>
 	</body>
 </html>
