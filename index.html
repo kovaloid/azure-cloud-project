@@ -3,32 +3,72 @@
     <head>
 	    <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Hello Page</title>
+	    <title>PDF Generator</title>
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	</head>
-	<body>
+	<body ng-app="Main">
 	
-	    <div>
-		    <form action="/handle" method="post">
+	    <div ng-controller="MainController as vm">
+		    
+
+		    <!--<form action="/handle" method="post">
 		       <input type="text" name="UserName" />
 		       <input type="text" name="Repository" />
 		       <input type="text" name="Branch" />
 		       <input type="submit" value="Submit" />
             </form>
+			-->
+
+			
+			<div>Text: <input type="text" ng-model="vm.textData"/></div>
+			
+			<div>fontName: 
+			    <select ng-model="vm.fontName" ng-change="vm.onChangeFontName()">
+				    <option value="" selected>-- Select font name --</option>
+			        <option ng-repeat="(fontKey, fontValue) in vm.fontList" value="{{fontKey}}">{{fontKey}}</option>
+			    </select>
+			</div>
+			
+			<div>fontStyle: 
+			    <select ng-model="vm.fontStyle" ng-change="vm.onChangeFontStyle()">
+				    <option value="" selected>-- Select font style --</option>
+			        <option ng-repeat="fontStyle in vm.fontStyleList" value="{{fontStyle}}">{{fontStyle}}</option>
+			    </select>
+			</div>
+			
+			
+			<div>X: <input type="text" ng-model="vm.textLeftPadding"/></div>
+			<div>Y: <input type="text" ng-model="vm.textTopPadding"/></div>
+			<div>File Name: <input type="text" ng-model="vm.pdfFileName"/></div>
+			<button ng-click="vm.addTextLine()">Add text line</button>
+			<button ng-click="vm.download()">Download</button>
+			
+			
+			<br><br>
+			
+			<div ng-bind-html="vm.embedPdfBox"></div>
+			
+			
+		
+
+			
+			
 		</div>
+		
+		<!--
 		<div>
 		    <a href="/basement">Link 1</a>
 		    <a href="/floor/1/bedroom">Link 2</a>
 		</div>
+		-->
+		
 		
 		<script src="node_modules/angular/angular.min.js"></script>
+		
+		<script src="main.module.js"></script>
+		<script src="main.controller.js"></script>
+		
 		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="node_modules/jspdf/dist/jspdf.min.js"></script>
-		<script>
-		    var doc = new jsPDF()
-
-doc.text('Hello world!', 10, 10)
-doc.save('a4.pdf')
-		</script>
 	</body>
 </html>

@@ -33,7 +33,7 @@ var server = http.createServer(function(request, response) {
             response.writeHead(200, {"Content-Type": "text/plain"});
             response.write('Hey, this is a private area!');
             response.end();
-        
+
         } else {
 			var pathName = url.parse(request.url).pathname;
             fs.readFile(__dirname + pathName, function (error, data) {
