@@ -1,6 +1,10 @@
+<!DOCTYPE html>
 <html>
     <head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	    <title>Hello Page</title>
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	</head>
 	<body>
 	
@@ -17,5 +21,14 @@
 		    <a href="/floor/1/bedroom">Link 2</a>
 		</div>
 		
+		<script src="node_modules/angular/angular.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="node_modules/jspdf/dist/jspdf.min.js"></script>
+		<script>
+		    var doc = new jsPDF()
+
+doc.text('Hello world!', 10, 10)
+doc.save('a4.pdf')
+		</script>
 	</body>
 </html>

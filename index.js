@@ -41,10 +41,24 @@ var server = http.createServer(function(request, response) {
 					response.writeHead(404, 'Resource Not Found', {'Content-Type': 'text/html'});
                     response.end('<!doctype html><html><head><title>404</title></head><body>404: Resource Not Found</body></html>');
                 } else {
-                   console.log(data);
-                    response.writeHead(200, {'Content-type':'text/html'});
-                    response.write(data);
+					var ext = pathName.substr(pathName.lastIndexOf('.') + 1);
+					if (ext === 'js') {
+						response.writeHead(200, {'Content-type':'application/javascript'});
+                        //response.write(data);
+                        //response.end();
+					} else if (ext === 'css') {
+						response.writeHead(200, {'Content-type':'text/css'});
+                        //response.write(data);
+                        //response.end();
+					} else {
+						//console.log(data);
+                        response.writeHead(200, {'Content-type':'text/html'});
+                        //response.write(data);
+                        //response.end();
+					}
+					response.write(data);
                     response.end();
+					
                 }
             });
         }
