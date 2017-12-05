@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <title>PDF Generator</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body ng-app="Main">
     
@@ -66,12 +66,23 @@
                    <h3 class="panel-title">Circle</h3>
                 </div>
                 <div class="panel-body">
-
-                    <div>circle X: <input type="text" ng-model="vm.circleX"/></div>
-                    <div>circle Y: <input type="text" ng-model="vm.circleY"/></div>
-                    <div>circle R: <input type="text" ng-model="vm.circleR"/></div>
-                    <div>circle style: <input type="text" ng-model="vm.circleStyle"/></div>
-
+				
+				    <div class="row form-group">
+                        <label class="col-md-3">Offset X:</label>
+                        <div class="col-md-9"><input type="text" ng-model="vm.circleX" class="form-control"/></div>
+                    </div>
+					<div class="row form-group">
+                        <label class="col-md-3">Offset Y:</label>
+                        <div class="col-md-9"><input type="text" ng-model="vm.circleY" class="form-control"/></div>
+                    </div>
+					<div class="row form-group">
+                        <label class="col-md-3">Offset R:</label>
+                        <div class="col-md-9"><input type="text" ng-model="vm.circleR" class="form-control"/></div>
+                    </div>
+					<div class="row form-group">
+                        <label class="col-md-3">Circle Style:</label>
+                        <div class="col-md-9"><input type="text" ng-model="vm.circleStyle" class="form-control"/></div>
+                    </div>
                     
                     <button type="button" class="btn btn-default" ng-click="vm.addCircle()">Add circle</button>
 
