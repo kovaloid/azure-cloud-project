@@ -4,6 +4,7 @@ angular
 	    function MainController($sce, $scope, $interpolate) {
 			var vm = this,
 			    doc = new jsPDF();
+			
 
 			vm.pdfFileName = 'a4.pdf';
 			
@@ -58,12 +59,13 @@ angular
 				refreshPdfViewer();
 			};
 			
-			vm.viewerWidth = 450;
-			vm.viewerHeight = 550;
+			vm.viewerWidth = '100%';
+			vm.viewerHeight = '800';
 			
 			function refreshPdfViewer() {
 				vm.encryptedPdfUrl = $sce.trustAsResourceUrl('data:application/pdf;base64,' + vm.getEncryptedPdfMarkup());
 			    vm.embedPdfBox = $sce.trustAsHtml($interpolate('<embed width="{{vm.viewerWidth}}" height="{{vm.viewerHeight}}" type="application/pdf" src="{{vm.encryptedPdfUrl}}"></embed>')($scope));
 			}
+			refreshPdfViewer();
 		
         }]);

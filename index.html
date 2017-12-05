@@ -1,80 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-	    <title>PDF Generator</title>
-	    <meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-	</head>
-	<body ng-app="Main">
-	
+<head>
+    <title>PDF Generator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-app="Main">
+    
     <nav class="navbar navbar-dark bg-primary">
       <span class="navbar-brand">PDF Generator</span>
     </nav>
 
     <main>
-
       <div class="container" ng-controller="MainController as vm">
         <div class="row">
           <div class="col-md-6">
-            <h2>Heading</h2>
+            <h2>Elements</h2>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h3 class="panel-title">Text</h3>
+                </div>
+                <div class="panel-body">
+
+                    <div class="row form-group">
+                        <label class="col-md-3">Text:</label>
+                        <div class="col-md-9"><input type="text" ng-model="vm.textData" class="form-control"/></div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3">Font Name:</label>
+                        <div class="col-md-9">
+                            <select ng-model="vm.fontName" ng-change="vm.onChangeFontName()" class="form-control">
+                                <option value="" selected>-- Select font name --</option>
+                                <option ng-repeat="(fontKey, fontValue) in vm.fontList" value="{{fontKey}}">{{fontKey}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3">Font Style:</label>
+                        <div class="col-md-9">
+                            <select ng-model="vm.fontStyle" ng-change="vm.onChangeFontStyle()" class="form-control">
+                               <option value="" selected>-- Select font style --</option>
+                               <option ng-repeat="fontStyle in vm.fontStyleList" value="{{fontStyle}}">{{fontStyle}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3">Offset X:</label>
+                        <div class="col-md-9"><input type="text" ng-model="vm.textLeftPadding" class="form-control"/></div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3">Offset Y:</label>
+                        <div class="col-md-9"><input type="text" ng-model="vm.textTopPadding" class="form-control"/></div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-default" ng-click="vm.addTextLine()">Add text line</button>
+                
+                </div>
+            </div>
             
-			
-			
-			<div style="border:1px solid black;">
-			<div>Text: <input type="text" ng-model="vm.textData"/></div>
-			
-			<div>fontName: 
-			    <select ng-model="vm.fontName" ng-change="vm.onChangeFontName()">
-				    <option value="" selected>-- Select font name --</option>
-			        <option ng-repeat="(fontKey, fontValue) in vm.fontList" value="{{fontKey}}">{{fontKey}}</option>
-			    </select>
-			</div>
-			
-			<div>fontStyle: 
-			    <select ng-model="vm.fontStyle" ng-change="vm.onChangeFontStyle()">
-				    <option value="" selected>-- Select font style --</option>
-			        <option ng-repeat="fontStyle in vm.fontStyleList" value="{{fontStyle}}">{{fontStyle}}</option>
-			    </select>
-			</div>
-			
-			
-			<div>X: <input type="text" ng-model="vm.textLeftPadding"/></div>
-			<div>Y: <input type="text" ng-model="vm.textTopPadding"/></div>
-			<div>File Name: <input type="text" ng-model="vm.pdfFileName"/></div>
-			<button ng-click="vm.addTextLine()">Add text line</button>
-		</div>	
-		
-		
-		
-		<div style="border:1px solid black;">
-			<div>circle X: <input type="text" ng-model="vm.circleX"/></div>
-			<div>circle Y: <input type="text" ng-model="vm.circleY"/></div>
-			<div>circle R: <input type="text" ng-model="vm.circleR"/></div>
-			<div>circle style: <input type="text" ng-model="vm.circleStyle"/></div>
-			<button ng-click="vm.addCircle()">Add circle</button>
-		</div>
-			
-			
-			
-			
-			<button ng-click="vm.clear()">Clear</button>
-			<button ng-click="vm.download()">Download</button>
-			
-			
-			
-			
-			
-			
-			
+            
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h3 class="panel-title">Circle</h3>
+                </div>
+                <div class="panel-body">
+
+                    <div>circle X: <input type="text" ng-model="vm.circleX"/></div>
+                    <div>circle Y: <input type="text" ng-model="vm.circleY"/></div>
+                    <div>circle R: <input type="text" ng-model="vm.circleR"/></div>
+                    <div>circle style: <input type="text" ng-model="vm.circleStyle"/></div>
+
+                    
+                    <button type="button" class="btn btn-default" ng-click="vm.addCircle()">Add circle</button>
+
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row form-group">
+                        <label class="col-md-3">File Name:</label>
+                        <div class="col-md-9"><input type="text" ng-model="vm.pdfFileName" class="form-control"/></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary" ng-click="vm.clear()">Clear</button>
+                            <button type="button" class="btn btn-primary" ng-click="vm.download()">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+
           </div>
+          
           <div class="col-md-6">
-            <h2>Heading</h2>
-			
-			
+            <h2>Result</h2>
             <div ng-bind-html="vm.embedPdfBox"></div>
-			
-			
           </div>
         </div>
 
@@ -87,30 +121,30 @@
     <footer class="container">
       <p>© Artem Kovalev 2017</p>
     </footer>
-	
-	
-	
-	
+    
+    
+    
+    
 
 
-		    <!--<form action="/handle" method="post">
-		       <input type="text" name="UserName" />
-		       <input type="text" name="Repository" />
-		       <input type="text" name="Branch" />
-		       <input type="submit" value="Submit" />
+        <!--<form action="/handle" method="post">
+               <input type="text" name="UserName" />
+               <input type="text" name="Repository" />
+               <input type="text" name="Branch" />
+               <input type="submit" value="Submit" />
             </form>
 
-		<div>
-		    <a href="/basement">Link 1</a>
-		    <a href="/floor/1/bedroom">Link 2</a>
-		</div>
-		-->
-		
-		<script src="node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script src="node_modules/jspdf/dist/jspdf.min.js"></script>
-		<script src="node_modules/angular/angular.min.js"></script>
-		<script src="main.module.js"></script>
-		<script src="main.controller.js"></script>
-	</body>
+        <div>
+            <a href="/basement">Link 1</a>
+            <a href="/floor/1/bedroom">Link 2</a>
+        </div>
+        -->
+        
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/jspdf/dist/jspdf.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="main.module.js"></script>
+    <script src="main.controller.js"></script>
+</body>
 </html>
