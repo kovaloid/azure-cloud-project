@@ -11,6 +11,11 @@ angular
                 doc.save(vm.pdfFileName);
 			};
 			
+			vm.clear = function () {
+				doc = new jsPDF();
+				refreshPdfViewer();
+			};
+			
 			vm.getPdfMarkup = function () {
 				return doc.output();
 			};
@@ -40,6 +45,16 @@ angular
 			
 			vm.addTextLine = function () {
 				doc.text(vm.textData, vm.textLeftPadding, vm.textTopPadding);
+				refreshPdfViewer();
+			};
+			
+			
+			vm.circleX = '';
+			vm.circleY = '';
+			vm.circleR = '';
+			vm.circleStyle = '';
+			vm.addCircle = function () {
+				doc.circle(vm.circleX, vm.circleY, vm.circleR, vm.circleStyle);
 				refreshPdfViewer();
 			};
 			
