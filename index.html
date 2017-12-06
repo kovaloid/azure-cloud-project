@@ -154,23 +154,23 @@
         <div class="container">
             <div class="row" ng-show="!vm.feedbackResponseText">
                 <form>
-				    <div class="row form-group">
-					    <div class="col-md-2"></div>
+                    <div class="row form-group">
+                        <div class="col-md-2"></div>
                         <label class="col-md-2">User:</label>
                         <div class="col-md-4"><input type="text" name="user" class="form-control" ng-model="vm.feedbackData.user" /></div>
-						<div class="col-md-4"></div>
+                        <div class="col-md-4"></div>
                     </div>
-					<div class="row form-group">
-					    <div class="col-md-2"></div>
+                    <div class="row form-group">
+                        <div class="col-md-2"></div>
                         <label class="col-md-2">Message:</label>
                         <div class="col-md-4"><input type="text" name="message" class="form-control" ng-model="vm.feedbackData.message" /></div>
-						<div class="col-md-4"></div>
+                        <div class="col-md-4"></div>
                     </div>
-					<div class="col-md-5"></div>
-					<div class="col-md-7"><input type="submit" value="Submit" class="btn btn-primary" ng-click="vm.sendFeedback()"/></div>
+                    <div class="col-md-5"></div>
+                    <div class="col-md-7"><input type="submit" value="Submit" class="btn btn-primary" ng-click="vm.sendFeedback()"/></div>
                 </form>
             </div>
-			<div class="row" ng-show="vm.feedbackResponseText">
+            <div class="row" ng-show="vm.feedbackResponseText">
                 <div ng-bind-html="vm.feedbackResponseText"></div>
             </div>
             <hr>
@@ -187,6 +187,6 @@
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="main.module.js"></script>
     <script src="main.controller.js"></script>
-	<script src="main.service.js"></script>
+    <script src="main.service.js"></script>
 </body>
 </html>

@@ -65,8 +65,8 @@ var server = http.createServer(function(request, response) {
             });
             request.on('end', function() {
                 var formData = querystring.parse(requestBody),
-				    formDataKey = JSON.parse(Object.keys(formData)[0]);
-				console.log(formDataKey);
+                    formDataKey = JSON.parse(Object.keys(formData)[0]);
+                console.log(formDataKey);
                 response.writeHead(200, {'Content-Type': 'text/html'});
                 response.write('<!doctype html><html><head><title>response</title></head><body>');
                 response.write('Thanks for the data!<br />User: '+formDataKey.user);
