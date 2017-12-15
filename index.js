@@ -26,7 +26,7 @@ var server = http.createServer(function(request, response) {
         } else if (page == '/about') {
         
             response.writeHead(200, {"Content-Type": "text/plain"});
-            response.end('It\'s a course work of Artem Kovalev');
+            response.end('This is a project that allows you to create new PDF files.');
 
         } else {
 
