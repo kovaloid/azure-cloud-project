@@ -5,13 +5,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<style>
+	    .my-navbar {
+		    display: inline-block;
+            width: 100%;
+            margin-bottom: 30px;
+		}
+		.my-navbar-button {
+		    float: right;
+            margin: 5px 10px;
+		}
+		.my-panel {
+		    margin-bottom: 30px;
+		}
+	</style>
 </head>
 <body ng-app="Main" ng-controller="MainController as vm">
     
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar navbar-dark bg-primary my-navbar">
       <span ng-click="vm.currentPage = vm.pageList[0]" class="navbar-brand" style="cursor: pointer;">PDF Generator</span>
-      <button type="button" class="btn btn-default navbar-btn pull-right" ng-click="vm.currentPage = vm.pageList[1]" style="margin: 10px;">About</button>
-      <button type="button" class="btn btn-default navbar-btn pull-right" ng-click="vm.currentPage = vm.pageList[2]" style="margin: 10px;">Feedback</button>
+      <button type="button" class="btn my-navbar-button" ng-click="vm.currentPage = vm.pageList[1]">About</button>
+      <button type="button" class="btn my-navbar-button" ng-click="vm.currentPage = vm.pageList[2]">Feedback</button>
     </nav>
 
     <main ng-if="vm.currentPage === vm.pageList[0]">
@@ -19,7 +33,7 @@
         <div class="row">
         <div class="col-md-6">
             <h2>Elements</h2>
-            <div class="panel panel-default">
+            <div class="panel panel-default my-panel">
                 <div class="panel-heading">
                    <h3 class="panel-title">Text</h3>
                 </div>
@@ -72,7 +86,7 @@
                 </div>
             </div>
             
-            <div class="panel panel-default">
+            <div class="panel panel-default my-panel">
                 <div class="panel-heading">
                    <h3 class="panel-title">Line</h3>
                 </div>
@@ -115,7 +129,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
+            <div class="panel panel-default my-panel">
                 <div class="panel-body">
                     <div class="row form-group">
                         <label class="col-md-3">File Name:</label>
@@ -143,9 +157,7 @@
 
     <main ng-if="vm.currentPage === vm.pageList[1]">
         <div class="container">
-            <div class="row">
-                <span>{{vm.aboutText}}</span>
-            </div>
+            <span>{{vm.aboutText}}</span>
             <hr>
         </div>
     </main>
@@ -153,7 +165,7 @@
     <main ng-if="vm.currentPage === vm.pageList[2]">
         <div class="container">
             <div class="row" ng-show="!vm.feedbackResponseText">
-                <form>
+                <form class="col-md-12">
                     <div class="row form-group">
                         <div class="col-md-2"></div>
                         <label class="col-md-2">User:</label>
@@ -166,13 +178,13 @@
                         <div class="col-md-4"><input type="text" name="message" class="form-control" ng-model="vm.feedbackData.message" /></div>
                         <div class="col-md-4"></div>
                     </div>
-                    <div class="col-md-5"></div>
-                    <div class="col-md-7"><input type="submit" value="Submit" class="btn btn-primary" ng-click="vm.sendFeedback()"/></div>
+					<div class="row">
+					    <div class="col-md-5"></div>
+                        <div class="col-md-7"><input type="submit" value="Submit" class="btn btn-primary" ng-click="vm.sendFeedback()"/></div>
+					</div>
                 </form>
             </div>
-            <div class="row" ng-show="vm.feedbackResponseText">
-                <div ng-bind-html="vm.feedbackResponseText"></div>
-            </div>
+            <div ng-show="vm.feedbackResponseText" ng-bind-html="vm.feedbackResponseText"></div>
             <hr>
         </div>
     </main>
